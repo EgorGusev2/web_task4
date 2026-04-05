@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма анкеты</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Анкета</h1>
+    <form action="form.php" method="POST">
+        <div class="form-group">
+            <label for="fio">ФИО:</label>
+            <input type="text" id="fio" name="fio" required>
+            <?php if (isset($errors['fio'])): ?>
+                <div class="error"><?= $errors['fio'] ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <?php if (isset($errors['phone'])): ?>
+                <div class="error"><?= $errors['phone'] ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <?php if (isset($errors['email'])): ?>
+                <div class="error"><?= $errors['email'] ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group">
+            <label for="birthdate">Дата рождения:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+            <?php if (isset($errors['birthdate'])): ?>
+                <div class="error"><?= $errors['birthdate'] ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group">
+            <label>Пол:</label>
+            <div class="radio-group">
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Мужской</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Женский</label>
+            </div>
+            <?php if (isset($errors['gender'])): ?>
+                <div class="error"><?= $errors['gender'] ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group">
+            <label for="languages">Любимый язык программирования:</label>
+            <select id="languages" name="languages[]" multiple="multiple" required>
+                <option value="Pascal">Pascal</option>
+                <option value="C">C</option>
+                <option value="C++">C++</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="PHP">PHP</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="Haskel">Haskel</option>
+                <option value="Clojure">Clojure</option>
+                <option value="Prolog">Prolog</option>
+                <option value="Scala">Scala</option>
+                <option value="Go">Go</option>
+            </select>
+            <?php if (isset($errors['languages'])): ?>
+                <div class="error"><?= $errors['languages'] ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group">
+            <label for="bio">Биография:</label>
+            <textarea id="bio" name="bio" required></textarea>
+            <?php if (isset($errors['bio'])): ?>
+                <div class="error"><?= $errors['bio'] ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox-group">
+                <input type="checkbox" id="contract" name="contract" required>
+                <label for="contract">С контрактом ознакомлен</label>
+            </div>
+            <?php if (isset($errors['contract'])): ?>
+                <div class="error"><?= $errors['contract'] ?></div>
+            <?php endif; ?>
+        </div>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>
