@@ -37,23 +37,15 @@ textarea {
     margin: 5px 0;
 }
 
-.error {
+.error-message {
     color: red;
     font-size: 0.9em;
     margin-top: 5px;
 }
 
-.success {
-    color: green;
-    font-size: 1.1em;
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #e8f5e9;
-    border-radius: 4px;
-}
-
 .error-field {
-    border: 1px solid red !important;
+    border: 2px solid red !important;
+    background-color: #ffe6e6;
 }
 
 button {
@@ -68,9 +60,4 @@ button {
 
 button:hover {
     background-color: #45a049;
-}
-
-select[multiple] {
-    height: auto;
-    min-height: 100px;
 }
