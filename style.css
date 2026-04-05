@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     max-width: 600px;
@@ -44,6 +43,19 @@ textarea {
     margin-top: 5px;
 }
 
+.success {
+    color: green;
+    font-size: 1.1em;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+}
+
+.error-field {
+    border: 1px solid red !important;
+}
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -56,4 +68,9 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+select[multiple] {
+    height: auto;
+    min-height: 100px;
 }
