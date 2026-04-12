@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Анкета разработчика</h1>
+        
+        <?php if (!empty($messages)): ?>
+            <?php foreach ($messages as $message): ?>
+                <?php echo $message; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        
+        <form action="process.php" method="POST">
+            <div class="form-group">
+                <label for="fio">ФИО:</label>
+                <input type="text" id="fio" name="fio" 
+                       value="<?php echo htmlspecialchars($values['fio']); ?>"
+                       class="<?php echo $errors['fio'] ? 'error' : ''; ?>">
+                <?php if ($errors['fio']): ?>
+                    <div class="error-text">Поле обязательно для заполнения</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" 
+                       value="<?php echo htmlspecialchars($values['phone']); ?>"
+                       class="<?php echo $errors['phone'] ? 'error' : ''; ?>"
+                       placeholder="+7 (123) 456-78-90">
+                <?php if ($errors['phone']): ?>
+                    <div class="error-text">Поле обязательно для заполнения</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" 
+                       value="<?php echo htmlspecialchars($values['email']); ?>"
+                       class="<?php echo $errors['email'] ? 'error' : ''; ?>"
+                       placeholder="example@mail.ru">
+                <?php if ($errors['email']): ?>
+                    <div class="error-text">Поле обязательно для заполнения</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="birthdate">Дата рождения:</label>
+                <input type="date" id="birthdate" name="birthdate" 
+                       value="<?php echo htmlspecialchars($values['birthdate']); ?>"
+                       class="<?php echo $errors['birthdate'] ? 'error' : ''; ?>">
+                <?php if ($errors['birthdate']): ?>
+                    <div class="error-text">Поле обязательно для заполнения</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label>Пол:</label>
+                <div class="radio-group">
+                    <input type="radio" id="male" name="gender" value="male" 
+                           <?php echo ($values['gender'] == 'male') ? 'checked' : ''; ?>
+                           class="<?php echo $errors['gender'] ? 'error' : ''; ?>">
+                    <label for="male">Мужской</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="female" name="gender" value="female" 
+                           <?php echo ($values['gender'] == 'female') ? 'checked' : ''; ?>
+                           class="<?php echo $errors['gender'] ? 'error' : ''; ?>">
+                    <label for="female">Женский</label>
+                </div>
+                <?php if ($errors['gender']): ?>
+                    <div class="error-text">Выберите пол</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="languages">Любимый язык программирования:</label>
+                <select id="languages" name="languages[]" multiple 
+                        class="<?php echo $errors['languages'] ? 'error' : ''; ?>">
+                    <option value="Pascal" <?php echo in_array('Pascal', $values['languages']) ? 'selected' : ''; ?>>Pascal</option>
+                    <option value="C" <?php echo in_array('C', $values['languages']) ? 'selected' : ''; ?>>C</option>
+                    <option value="C++" <?php echo in_array('C++', $values['languages']) ? 'selected' : ''; ?>>C++</option>
+                    <option value="JavaScript" <?php echo in_array('JavaScript', $values['languages']) ? 'selected' : ''; ?>>JavaScript</option>
+                    <option value="PHP" <?php echo in_array('PHP', $values['languages']) ? 'selected' : ''; ?>>PHP</option>
+                    <option value="Python" <?php echo in_array('Python', $values['languages']) ? 'selected' : ''; ?>>Python</option>
+                    <option value="Java" <?php echo in_array('Java', $values['languages']) ? 'selected' : ''; ?>>Java</option>
+                    <option value="Haskell" <?php echo in_array('Haskell', $values['languages']) ? 'selected' : ''; ?>>Haskell</option>
+                    <option value="Clojure" <?php echo in_array('Clojure', $values['languages']) ? 'selected' : ''; ?>>Clojure</option>
+                    <option value="Prolog" <?php echo in_array('Prolog', $values['languages']) ? 'selected' : ''; ?>>Prolog</option>
+                    <option value="Scala" <?php echo in_array('Scala', $values['languages']) ? 'selected' : ''; ?>>Scala</option>
+                    <option value="Go" <?php echo in_array('Go', $values['languages']) ? 'selected' : ''; ?>>Go</option>
+                </select>
+                <small>Для выбора нескольких языков зажмите Ctrl (Cmd) и кликайте</small>
+                <?php if ($errors['languages']): ?>
+                    <div class="error-text">Выберите хотя бы один язык</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="bio">Биография:</label>
+                <textarea id="bio" name="bio" rows="5" 
+                          class="<?php echo $errors['bio'] ? 'error' : ''; ?>"><?php echo htmlspecialchars($values['bio']); ?></textarea>
+                <?php if ($errors['bio']): ?>
+                    <div class="error-text">Поле обязательно для заполнения</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="contract" name="contract" value="1" 
+                           <?php echo $values['contract'] ? 'checked' : ''; ?>
+                           class="<?php echo $errors['contract'] ? 'error' : ''; ?>">
+                    <label for="contract">С контрактом ознакомлен</label>
+                </div>
+                <?php if ($errors['contract']): ?>
+                    <div class="error-text">Необходимо подтвердить согласие</div>
+                <?php endif; ?>
+            </div>
+
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+</body>
+</html>
